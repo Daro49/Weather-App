@@ -1,0 +1,15 @@
+{
+  "name": "weather_app",
+  "version": "0.0.1",
+  "description": "silly weather app to get to know html, css, js and API's more",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matej Daransky",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^37.4.0"
+  }
+}
