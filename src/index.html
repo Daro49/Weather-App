@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css">
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.open-meteo.com"
@@ -10,12 +11,45 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-    <title>Hello from Electron renderer!</title>
   </head>
   <body>
-    <h1>Hello from Electron renderer!</h1>
-    <p>👋</p>
-    <p id="info"></p>
+    <div id="background">
+      <!-- Top Navigation Bar -->
+      <div class="navbar">
+        <div id="date">4.9.2025</div>
+        <button id="selector_button">Trencin</button>
+        <div class="controls">
+          <button id="minimize_button">min</button>
+          <button id="exit_button">exit</button>
+        </div>
+      </div>
+
+      <!-- Current Weather -->
+      <div class="current_weather">
+        <div class="main_day">Monday</div>
+        <img src="man.png" width="125" height="120" alt="today">
+        <div class="main_temp">21.5°C</div>
+      </div>
+
+      <!-- Forecast -->
+      <div class="forecast">
+        <div class="day">
+        <p>Tuesday</p>
+          <img src="rain.png" width="85" height="81" alt="day1" />
+          <span>20°C</span>
+        </div>
+        <div class="day">
+          <p>Wednesday</p>
+          <img src="cloud.png" width="85" height="81" alt="day2" />
+          <span>23°C</span>
+        </div>
+        <div class="day">
+          <p>Thursday</p>
+          <img src="moon.png" width="85" height="81" alt="day3" />
+          <span>25°C</span>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="./render.js"></script>
 </html>
