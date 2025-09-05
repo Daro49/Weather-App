@@ -3,50 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css">
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.open-meteo.com"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
   </head>
   <body>
     <div id="background">
-      <!-- Top Navigation Bar -->
-      <div class="navbar">
-        <div id="date">4.9.2025</div>
-        <button id="selector_button">Trencin</button>
-        <div class="controls">
-          <button id="minimize_button">min</button>
-          <button id="exit_button">exit</button>
+      <div id="frame">
+        <!-- Top Navigation Bar -->
+        <div id="top">
+          <div class="navbar">
+            <div id="date">4.9.2025</div>
+            <img id="selector_button" src="../assets/night_buttonborder.png" alt="city_selector">
+            <img id="minimize_button" src="../assets/night_minimize.png" alt="minimize">
+            <img id="exit_button" src="../assets/night_exit.png" alt="exit">
+          </div>
+          <hr id="line">
         </div>
-      </div>
 
-      <!-- Current Weather -->
-      <div class="current_weather">
-        <div class="main_day">Monday</div>
-        <img src="man.png" width="125" height="120" alt="today">
-        <div class="main_temp">21.5°C</div>
-      </div>
+        <!-- Current Weather -->
+        <div class="current_weather">
+          <div class="main_day">Monday</div>
+          <img class="main_img" src="../assets/question_mark.png" alt="today">
+          <div class="main_temp">21.5°C</div>
+        </div>
 
-      <!-- Forecast -->
-      <div class="forecast">
-        <div class="day">
-        <p>Tuesday</p>
-          <img src="rain.png" width="85" height="81" alt="day1" />
-          <span>20°C</span>
-        </div>
-        <div class="day">
-          <p>Wednesday</p>
-          <img src="cloud.png" width="85" height="81" alt="day2" />
-          <span>23°C</span>
-        </div>
-        <div class="day">
-          <p>Thursday</p>
-          <img src="moon.png" width="85" height="81" alt="day3" />
-          <span>25°C</span>
+        <!-- Forecast -->
+        <div class="forecast">
+          <div class="day">
+            <p class="f_day">Tuesday</p>
+            <img class="forecast_img" src="../assets/question_mark.png" alt="day1">
+            <p class="f_temp">20°C</p>
+          </div>
+          <div class="day">
+            <p class="f_day">Wednesday</p>
+            <img class="forecast_img" src="../assets/question_mark.png" alt="day2">
+            <p class="f_temp">23°C</p>
+          </div>
+          <div class="day">
+            <p class="f_day">Thursday</p>
+            <img class="forecast_img" src="../assets/question_mark.png" alt="day3">
+            <p class="f_temp">25°C</p>
+          </div>
         </div>
       </div>
     </div>

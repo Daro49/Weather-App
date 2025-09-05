@@ -1,8 +1,6 @@
-const { contextBridge } = require('electron/renderer')
+const { contextBridge, ipcRenderer } = require('electron/renderer')
 
-contextBridge.exposeInMainWorld('versions', {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron
+contextBridge.exposeInMainWorld('electronAPI', {
+  send: (channel) => ipcRenderer.send(channel)
   // we can also expose variables, not just functions
 })

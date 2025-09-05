@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron/main')
+const { app, BrowserWindow, ipcMain } = require('electron/main')
 const path = require('node:path')
 
 const createWindow = () => {
@@ -15,7 +15,15 @@ const createWindow = () => {
     }
   })
 
-  win.loadFile('src/index.html')
+  win.loadFile('src/index.html');
+
+  ipcMain.on('minimize_window', () => {
+    win.minimize();
+  });
+
+  ipcMain.on('exit_window', () => {
+    win.close();
+  })
 }
 
 app.whenReady().then(() => {
