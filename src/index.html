@@ -11,7 +11,9 @@
         <div id="top">
           <div class="navbar">
             <div id="date">4.9.2025</div>
-            <img id="selector_button" src="../assets/night_buttonborder.png" alt="city_selector">
+            <div id="selector_container">
+              <div id="selector_text">Trencin</div>
+            </div>
             <img id="minimize_button" src="../assets/night_minimize.png" alt="minimize">
             <img id="exit_button" src="../assets/night_exit.png" alt="exit">
           </div>
@@ -42,6 +44,15 @@
             <img class="forecast_img" src="../assets/question_mark.png" alt="day3">
             <p class="f_temp">25°C</p>
           </div>
+        </div>
+      </div>
+
+      <div id="dropdown_menu">
+        <div class="dropdown_option" onclick="setCity(event)">
+          <div class="dropdown_text">Trencin</div>
+        </div>
+        <div class="dropdown_option" onclick="setCity(event)">
+          <div class="dropdown_text">Brno</div>
         </div>
       </div>
     </div>

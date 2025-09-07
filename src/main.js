@@ -17,6 +17,9 @@ const createWindow = () => {
 
   win.loadFile('src/index.html');
 
+  // Open DevTools (optional) // Debugging
+  //win.webContents.openDevTools();
+
   ipcMain.on('minimize_window', () => {
     win.minimize();
   });

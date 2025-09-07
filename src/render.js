@@ -6,6 +6,11 @@ const current_day = document.getElementsByClassName('current_weather')[0];
 const TRENCIN = {latitude: 48.8945, longitude: 18.0444};
 const BRNO = {latitude: 49.1952, longitude: 16.608};
 
+const CITY_MAPPINGS = {
+  'Trencin': {latitude: 48.8945, longitude: 18.0444},
+  'Brno': {latitude: 49.1952, longitude: 16.608},
+};
+
 const WEATHER_MAPPINGS = {
   0: { icon: 'clear', description: 'Clear sky' },
   1: { icon: 'clear', description: 'Mainly clear' },
@@ -50,8 +55,8 @@ async function fetchJson(url) {
   }
 }
 
-async function setWeather() {
-  const weatherData = await fetchWeatherData(TRENCIN.latitude, TRENCIN.longitude);
+async function setWeather(city) {
+  const weatherData = await fetchWeatherData(city.latitude, city.longitude);
   console.log(weatherData);
 
   // -- Current weather update --
@@ -114,6 +119,35 @@ function getImgAlt(weather_code) {
   return WEATHER_MAPPINGS[weather_code]?.description || "Unknown weather";
 }
 
+// --- Dropdown Menu ---
+
+// Dropdown menu popup
+document.getElementById('selector_container').addEventListener('click', () => {
+  const dropdown = document.getElementById('dropdown_menu');
+
+  if (dropdown.style.display === 'none') {
+    dropdown.style.display = "flex";
+  }
+  else {
+    dropdown.style.display = "none";
+  }
+});
+
+// Sets weather of selected city from popup
+function setCity(event) {
+  const city_name = event.target.firstElementChild.innerText;
+  const current_city = document.getElementById('selector_text');
+
+  if (city_name != current_city.innerText) {
+    const city = CITY_MAPPINGS[city_name];
+    setWeather(city);
+    current_city.innerText = city_name;
+  }
+
+  const dropdown = document.getElementById('dropdown_menu');
+  dropdown.style.display = "none";
+}
+
 // --- Electron ---
 
 document.getElementById('minimize_button').addEventListener('click', () => {
@@ -123,5 +157,3 @@ document.getElementById('minimize_button').addEventListener('click', () => {
 document.getElementById('exit_button').addEventListener('click', () => {
   window.electronAPI.send('exit_window');
 });
-
-setWeather();
