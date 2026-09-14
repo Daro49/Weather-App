@@ -3,9 +3,6 @@ const WEATHER_API_URL = 'https://api.open-meteo.com/v1/forecast';
 const date = document.getElementById('date');
 const current_day = document.getElementsByClassName('current_weather')[0];
 
-const TRENCIN = {latitude: 48.8945, longitude: 18.0444};
-const BRNO = {latitude: 49.1952, longitude: 16.608};
-
 const CITY_MAPPINGS = {
   'Trencin': {latitude: 48.8945, longitude: 18.0444},
   'Brno': {latitude: 49.1952, longitude: 16.608},
@@ -57,7 +54,7 @@ async function fetchJson(url) {
 
 async function setWeather(city) {
   const weatherData = await fetchWeatherData(city.latitude, city.longitude);
-  console.log(weatherData);
+  await setDay();
 
   // -- Current weather update --
   current_day.querySelector('.main_day').textContent = getDayOfWeek(weatherData.daily.time[0]);
@@ -119,6 +116,44 @@ function getImgAlt(weather_code) {
   return WEATHER_MAPPINGS[weather_code]?.description || "Unknown weather";
 }
 
+// -- Theme change --
+
+async function setDay() {
+  // Background
+  const background = document.getElementById('background');
+  background.style.background = "#0892A5";
+  background.style.border = "3px solid #EAC77E";
+
+  // Pop-up
+  const popup = document.getElementById('dropdown_menu');
+  popup.style.background = "#0892A5";
+  popup.style.border = "4px solid #EAC77E";
+
+  // Icons
+  document.getElementById('line').style.borderColor = "#EAC77E";
+  document.getElementById('selector_container').style.backgroundImage = 'url("../assets/day_buttonborder.png")';
+  document.getElementById('minimize_button').src = "../assets/day_minimize.png";
+  document.getElementById('exit_button').src = "../assets/day_exit.png";
+}
+
+async function setNight() {
+    // Background
+  const background = document.getElementById('background');
+  background.style.background = "#036";
+  background.style.border = "3px solid #4F8FBA";
+
+  // Pop-up
+  const popup = document.getElementById('dropdown_menu');
+  popup.style.background = "#036";
+  popup.style.border = "4px solid #4F8FBA";
+
+  // Icons
+  document.getElementById('line').style.borderColor = "#4F8FBA";
+  document.getElementById('selector_container').style.backgroundImage = 'url("../assets/night_buttonborder.png")';
+  document.getElementById('minimize_button').src = "../assets/night_minimize.png";
+  document.getElementById('exit_button').src = "../assets/night_exit.png";
+}
+
 // --- Dropdown Menu ---
 
 // Dropdown menu popup
@@ -134,13 +169,13 @@ document.getElementById('selector_container').addEventListener('click', () => {
 });
 
 // Sets weather of selected city from popup
-function setCity(event) {
+async function setCity(event) {
   const city_name = event.target.firstElementChild.innerText;
   const current_city = document.getElementById('selector_text');
 
   if (city_name != current_city.innerText) {
     const city = CITY_MAPPINGS[city_name];
-    setWeather(city);
+    await setWeather(city);
     current_city.innerText = city_name;
   }
 
